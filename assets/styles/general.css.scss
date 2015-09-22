@@ -1,0 +1,19 @@
+$bg_color:#e0f8e0;
+$orange:#fbd098;
+body {
+  background: {
+    color: $bg_color;
+  }
+  font: {
+    family: "Helvetica Neue", Verdana, sans-serif;
+  }
+}
+
+div.main {
+  background: {
+    color: $orange;
+  }
+  margin: {
+    top: 60px;
+  }
+}

@@ -1,0 +1,16 @@
+.DS_STORE
+.rvmrc          # unused, just in case
+.ruby-version
+.bundle
+.sass-cache
+db/*.db
+log/*.log
+tmp/
+
+# config info that must not end up in public repos
+
+
+# RubyMine project specific stuff
+.idea
+.idea/*
+.idea/*.iml

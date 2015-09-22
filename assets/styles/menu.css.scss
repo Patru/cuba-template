@@ -1,0 +1,106 @@
+$menu_background_color: white;
+$submenu_background_color: rgb(245, 250, 253);
+$menu_selected_color: white;
+$menu_selected_background: blue;
+$menu_hover_background: rgb(201, 225, 245);
+$menu_hover_color: black;
+$menu_link_color: blue;
+$submenu_selected_background: $menu_hover_background;
+nav {
+  position: absolute;
+  top: 20px;
+  left: 0px;
+  ul.clearfix {
+    display: none;
+  }
+  ul {
+    margin: 0px;
+    list-style-type: none;
+    li {
+      background-color: $menu_background_color;
+      float: left;
+      padding: 5px 5px 0 5px;
+      border: {
+        color:black;
+        style: solid;
+        width: 1px;
+      }
+      a {
+        color: $menu_link_color;
+        padding: 5px 5px 0 5px;
+        text-decoration: none;
+        &:hover {
+          color: $menu_hover_color;
+          text-decoration: none;
+        }
+      }
+      ul {
+        li {
+          float: none;
+        }
+      }
+    }
+    li:hover {
+      background-color: $menu_hover_background;
+      color: $menu_hover_color;
+//      @include select_tab;
+    }
+    li:hover ul.clearfix {
+      display:block;
+      position: absolute;
+      background-color: #f5f5f5;
+      background-color: $submenu_background_color;
+      border: {
+        color: blue;
+        width: 1px;
+        left-style: solid;
+        right-style: solid;
+        bottom: {
+          style: solid;
+          left-radius: 8px;
+          right-radius: 8px;
+        }
+      }
+      box-shadow: 3px 3px 2px 1px #ccc;
+      margin-left: -6px;
+      padding: 5px;
+      li {
+        background-color: transparent;
+        padding: 2px 0;
+        border: {
+          style: none;
+        }
+        a {
+          padding: 2px 5px;
+          background-color: transparent;
+          color: $menu_link_color;
+          &:hover {
+            color: $menu_hover_color;
+            background-color: $menu_hover_background;
+          }
+        }
+        &.selected {
+          background-color: $menu_hover_background;
+        }
+      }
+    }
+    li.selected {
+      background-color: $menu_selected_background;
+      color: $menu_selected_color;
+      border-color: blue;
+      a {
+        color: $menu_selected_color;
+        background-color: $menu_selected_background;
+      }
+      &:hover {
+        color: $menu_hover_color;
+        background-color: $menu_selected_background;
+ //       @include select_tab;
+        a:hover {
+          color: $menu_selected_color;
+          text-decoration: none;
+        }
+      }
+    }
+  }
+}
