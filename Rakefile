@@ -16,6 +16,7 @@ namespace :db do
     require_relative 'config/environment'
     require "sequel"
     Sequel.extension :migration
+    puts "connecting to db #{ENV['DATABASE_URL']} while raking"
     db = Sequel.connect(ENV.fetch("DATABASE_URL"))
     if args[:version]
       puts "Migrating to version #{args[:version]}"

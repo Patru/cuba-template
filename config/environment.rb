@@ -9,5 +9,8 @@ def database_url
   @database_url
 end
 
-Sequel.connect(database_url)
-#Sequel.extension :migration
+def cookie_secret
+  ENV['COOKIE_SECRET']
+end
+
+DB=Sequel.connect(database_url)

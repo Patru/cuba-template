@@ -9,5 +9,7 @@ port        ENV['PORT']     || 9234
 environment ENV['RACK_ENV'] || 'development'
 
 on_worker_boot do
-  puts "booting worker and connecting to database using #{database_url}"
+  db=Sequel.connect(database_url, test:true)
+  # without testing the connection here an invalid connection will result when starting puma
+  # (even more strangely, rackup will stell do, even with puma as the server)
 end

@@ -9,6 +9,12 @@ module Views
 
     def body_content
       p 'Put something about us here'
+      p do
+        text 'find us on '
+        a href: 'https://github.com/Patru/cuba-template' do
+          text 'github'
+        end
+      end
     end
   end
 end

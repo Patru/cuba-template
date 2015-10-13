@@ -11,7 +11,6 @@ require 'minitest/pride'
 require 'minitest/autorun'
 require 'minitest/spec'
 #require 'rack/test'
-#require 'capybara_minitest_spec'
 #
 #class MiniTest::Spec
 #  include Rack::Test::Methods

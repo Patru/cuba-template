@@ -2,21 +2,29 @@ require "cuba"
 require "cuba/safe"
 require "rack/flash"
 require "cuba/assets"
+require 'shield'
 require File.expand_path(File.join('..', 'plugins', 'forti'), __dir__)
 require_relative '../plugins/helpers'
 require_relative '../views/hello'
 require_relative '../views/hello_page'
 require_relative '../views/about'
+Dir["./routes/**/*.rb"].each  { |route| require route }
 
-Cuba.use Rack::Session::Cookie, :secret => "JyaLlCpjl9P4VWJVH1TYCE3LiepuclESHqTpCt3YiJlk"
+Cuba.use Rack::Session::Cookie, :secret => cookie_secret
 Cuba.use Rack::Flash, flash_app_class: Cuba, sweep: true
 
 Cuba.plugin Cuba::Safe
 Cuba.plugin Forti
 Cuba.plugin Helpers
 Cuba.plugin Cuba::Assets
+Cuba.plugin Shield::Helpers
 
 Cuba.define do
+  #puts "in root, resolving #{env["PATH_INFO"]} through #{env['REQUEST_METHOD']}"
+  on 'admin' do
+    run AdminRoutes
+  end
+
   on get do
     on 'assets' do
       run sprocket_assets_server

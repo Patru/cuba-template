@@ -1,4 +1,12 @@
 GIT
+  remote: git@github.com:Patru/capybara-screenshot.git
+  revision: b7395a5a1d4756a46aea66e9046e7838a0134ba5
+  specs:
+    capybara-screenshot (1.0.11)
+      capybara (>= 1.0, < 3)
+      launchy
+
+GIT
   remote: https://github.com/Patru/cuba-assets.git
   revision: eeb68c7e249486623c7d10e1222bb245d0f06fa2
   specs:
@@ -17,6 +25,7 @@ GEM
       thread_safe (~> 0.3, >= 0.3.4)
       tzinfo (~> 1.1)
     addressable (2.3.8)
+    armor (0.0.3)
     capybara (2.5.0)
       mime-types (>= 1.16)
       nokogiri (>= 1.3.3)
@@ -32,6 +41,7 @@ GEM
     chronic (0.10.2)
     cuba (3.4.0)
       rack
+    database_cleaner (1.5.0)
     delorean (2.1.0)
       chronic
     email_spec (1.6.0)
@@ -55,6 +65,8 @@ GEM
     minitest (5.8.0)
     minitest-matchers_vaccine (1.0.3)
       minitest (~> 5.0)
+    minitest-metadata (0.6.0)
+      minitest (>= 4.7, < 6.0)
     multi_json (1.11.2)
     nokogiri (1.6.6.2)
       mini_portile (~> 0.6.0)
@@ -70,6 +82,8 @@ GEM
     ref (2.0.0)
     sass (3.4.18)
     sequel (4.26.0)
+    shield (2.1.1)
+      armor
     sprockets (2.12.4)
       hike (~> 1.2)
       multi_json (~> 1.0)
@@ -95,10 +109,12 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  capybara-screenshot!
   capybara-webkit
   capybara_minitest_spec
   cuba
   cuba-assets!
+  database_cleaner
   delorean
   email_spec
   forme
@@ -107,6 +123,7 @@ DEPENDENCIES
   launchy
   minidown
   minitest-matchers_vaccine
+  minitest-metadata
   nokogiri
   pg
   pony
@@ -115,6 +132,7 @@ DEPENDENCIES
   rack-test
   sass
   sequel
+  shield
   sprockets-helpers
   sprockets-sass
   sqlite3
