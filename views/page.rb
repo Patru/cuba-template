@@ -7,6 +7,7 @@ class Page < Fortitude::Widget
 
   def head_content
     meta charset:'utf-8'
+    rawtext csrf.meta_tag
     title page_title
     link href:'/assets/application.css', rel:'stylesheet', type:'text/css'
   end
@@ -71,5 +72,9 @@ class Page < Fortitude::Widget
         end
       end
     end
+  end
+
+  def csrf_token
+    {'csrf_token'=>csrf.token}
   end
 end

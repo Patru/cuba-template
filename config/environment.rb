@@ -14,3 +14,4 @@ def cookie_secret
 end
 
 DB=Sequel.connect(database_url)
+puts "connecting to database #{database_url}"

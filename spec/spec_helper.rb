@@ -10,6 +10,13 @@ require "cuba"
 require 'minitest/pride'
 require 'minitest/autorun'
 require 'minitest/spec'
+require 'pathname'
+
+class Cuba
+  def self.tmp_dir
+    Pathname.new(__dir__,).join('..', 'tmp').expand_path
+  end
+end
 #require 'rack/test'
 #
 #class MiniTest::Spec

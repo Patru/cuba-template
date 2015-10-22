@@ -12,7 +12,7 @@ module Views
         def body_content
           text "Hello #{admin.name}, please log in with your password"
           frm= Forme.form(admin, {action: '/admin/login', method: 'post'},
-                          hidden_tags: [{token:admin.token}]) do |f|
+                          hidden_tags: [csrf_token, {token:admin.token}]) do |f|
             f.inputs do
               f.input(:password, type: :password)
               f.button(value: "Log in", name: 'login')

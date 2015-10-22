@@ -1,5 +1,4 @@
 require_relative 'spec_helper'
-require 'capybara'              # we need to require this before loading the environment
 require File.expand_path('../config/environment', __dir__)
 require 'database_cleaner'
 

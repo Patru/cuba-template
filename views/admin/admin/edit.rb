@@ -4,13 +4,13 @@ require_relative 'admin'
 module Views
   module Admin
     module Admin
-      class New < Admin
+      class Edit < Admin
         def page_title
-          'Create a new Admin'
+          "Edit admin #{admin.name}"
         end
 
         def body_content
-          form('/admin/create')
+          form(admin.show_path, 'Save', 'put')
         end
       end
     end

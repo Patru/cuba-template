@@ -2,6 +2,7 @@ require "cuba"
 require "cuba/safe"
 require "rack/flash"
 require "cuba/assets"
+require "rack/methodoverride"
 require 'shield'
 require File.expand_path(File.join('..', 'plugins', 'forti'), __dir__)
 require_relative '../plugins/helpers'
@@ -12,6 +13,7 @@ Dir["./routes/**/*.rb"].each  { |route| require route }
 
 Cuba.use Rack::Session::Cookie, :secret => cookie_secret
 Cuba.use Rack::Flash, flash_app_class: Cuba, sweep: true
+Cuba.use Rack::MethodOverride
 
 Cuba.plugin Cuba::Safe
 Cuba.plugin Forti
@@ -21,6 +23,15 @@ Cuba.plugin Shield::Helpers
 
 Cuba.define do
   #puts "in root, resolving #{env["PATH_INFO"]} through #{env['REQUEST_METHOD']}"
+  on csrf.unsafe? do
+    csrf.reset!
+
+    res.status = 403
+    res.write forti(Views::ForbiddenRequest, url: env['SCRIPT_NAME']+env['PATH_INFO'])
+
+    halt(res.finish)
+  end
+
   on 'admin' do
     run AdminRoutes
   end
