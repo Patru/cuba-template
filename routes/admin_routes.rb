@@ -4,6 +4,7 @@ require 'pony'
 require_relative '../models/admin'
 require_relative '../views/admin/admin/all'
 require_relative '../views/forbidden_request'
+require_relative 'user_routes'
 
 class AdminRoutes < Cuba
   def admins_exist?
@@ -14,6 +15,9 @@ class AdminRoutes < Cuba
     # note that the following two are the only admin-routes we can reach as long as there is no administrator
 
     on authenticated(Admin) do
+      on 'user' do
+        run UserRoutes
+      end
       adm=authenticated(Admin)
       on get do
         on 'logout' do
@@ -55,7 +59,7 @@ class AdminRoutes < Cuba
         end
 
         on default do
-          puts "I am authenticated with #{session[:Admin]}, but I do not know what to get with #{env['PATH_INFO']}"
+          puts "I am authenticated with #{session[:Admin]}, but I do not know what to get with #{env['PATH_INFO']} at #{env['SCRIPT_NAME']}"
           raise StandardError.new("I wanna know where this happens")
           res.redirect '/admin/central'
         end
